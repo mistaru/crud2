@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,37 +19,37 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Controller
+@RequestMapping("/song")
 public class SongController {
+
     @Autowired
     private SongRepository songRepository;
 
-    @GetMapping("/song")
+    @GetMapping("/list")
     public ModelAndView songs(@AuthenticationPrincipal User user) {
-        Iterable<Song> songIterable = songRepository.findAll();
-        List<Song> songList = songRepository.findByAuthor(user);
-        List<Song> sortedSong = StreamSupport.stream(songIterable.spliterator(), false)
-                .sorted()
-                .collect(Collectors.toList());
+
         return new ModelAndView("song")
-                .addObject("Song", sortedSong)
-//                .addObject("Song", songIterable)
-                .addObject("SongUser", songList);
+                .addObject("Song", songRepository.findAll().stream()
+                        .sorted()
+                        .collect(Collectors.toList()))
+                .addObject("SongUser", songRepository.findByAuthor(user));
     }
 
-    @GetMapping("/editSong")
+    @GetMapping("/edit")
     public ModelAndView edit(@AuthenticationPrincipal User user) {
-        Iterable<Song> songIterable;
+
+        List<Song> songIterable;
+
         if (user.isAdmin()) {
             songIterable = songRepository.findAll();
         } else {
             songIterable = songRepository.findByAuthor(user);
         }
 
-        List<Song> sortedSong = StreamSupport.stream(songIterable.spliterator(), false)
-                .sorted()
-                .collect(Collectors.toList());
         return new ModelAndView("editSong")
-                .addObject("SongUser", sortedSong);
+                .addObject("SongUser", songIterable.stream()
+                        .sorted()
+                        .collect(Collectors.toList()));
     }
 
     @PostMapping("/song")
@@ -62,7 +63,7 @@ public class SongController {
 
         Song song = new Song(name, singer, album, style, user);
         songRepository.save(song);
-        model.put("SongAdd", "Song '" +song.getName() +"' successfully added!");
+        model.put("SongAdd", "Song '" + song.getName() + "' successfully added!");
 
         Iterable<Song> songIterable = songRepository.findAll();
         model.put("Song", songIterable);
@@ -84,7 +85,7 @@ public class SongController {
 
         if (user.getUsername().contains(song.getAuthorName()) || user.isAdmin()) {
             songRepository.deleteByNameAndSinger(name, singer);
-            model.put("SongAdd", "Song '" +song.getName() +"' successfully delete!");
+            model.put("SongAdd", "Song '" + song.getName() + "' successfully delete!");
 
             List<Song> songList = songRepository.findAll();
             model.put("Song", songList);
@@ -137,7 +138,10 @@ public class SongController {
 
         List<Song> songList = songRepository.findByName(nameEdit);
         Song song = songList.get(0);
-        song.setName(name); song.setSinger(singer); song.setAlbum(album); song.setStyle(style);
+        song.setName(name);
+        song.setSinger(singer);
+        song.setAlbum(album);
+        song.setStyle(style);
         songRepository.save(song);
 
         Iterable<Song> songIterable = songRepository.findAll();

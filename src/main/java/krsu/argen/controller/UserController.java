@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepo;
 
-    @GetMapping
+    @GetMapping("/list")
     public String userList(Model model) {
         model.addAttribute("users", userRepo.findAll());
         return "userList";
@@ -32,9 +32,8 @@ public class UserController {
     public String userEditForm(@PathVariable User user, Model model) {
 
         if (user.getRoles().contains(Role.ADMIN)) {
-            //отправляешь все песни
+
         } else if (user.getRoles().contains(Role.USER)) {
-            //List<Song> usersSongs = songRepository.findByAuthor(user);
         }
 
         model.addAttribute("user", user);

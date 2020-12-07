@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,16 +20,18 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Controller
+@RequestMapping("playlist")
 public class PlaylistController {
 
-    @Autowired
-    private SongRepository songRepository;
+    private final SongRepository songRepository;
+    private final PlaylistRepository playlistRepository;
+    private final ListSongRepository listSongRepository;
 
-    @Autowired
-    private PlaylistRepository playlistRepository;
-
-    @Autowired
-    private ListSongRepository listSongRepository;
+    public PlaylistController(SongRepository songRepository, PlaylistRepository playlistRepository, ListSongRepository listSongRepository) {
+        this.songRepository = songRepository;
+        this.playlistRepository = playlistRepository;
+        this.listSongRepository = listSongRepository;
+    }
 
     @GetMapping("/playlist")
     public ModelAndView playlist(@AuthenticationPrincipal User user) {
