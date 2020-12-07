@@ -1,14 +1,14 @@
-package krsu.argen.controller;
+package krsu.education.controller;
 
-import krsu.argen.model.Role;
-import krsu.argen.model.User;
-import krsu.argen.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import krsu.education.model.Role;
+import krsu.education.model.User;
+import krsu.education.repository.UserRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
@@ -19,8 +19,11 @@ import java.util.stream.Collectors;
 @PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepo;
+    private final UserRepository userRepo;
+
+    public UserController(@NotNull UserRepository userRepo) {
+        this.userRepo = userRepo;
+    }
 
     @GetMapping("/list")
     public String userList(Model model) {

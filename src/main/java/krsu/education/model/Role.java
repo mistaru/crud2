@@ -1,4 +1,4 @@
-package krsu.argen.model;
+package krsu.education.model;
 
 import org.springframework.security.core.GrantedAuthority;
 

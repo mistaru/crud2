@@ -1,8 +1,8 @@
-package krsu.argen.controller;
+package krsu.education.controller;
 
-import krsu.argen.model.Role;
-import krsu.argen.model.User;
-import krsu.argen.repository.UserRepository;
+import krsu.education.model.Role;
+import krsu.education.model.User;
+import krsu.education.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

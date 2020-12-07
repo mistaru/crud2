@@ -1,4 +1,4 @@
-package krsu.argen.model;
+package krsu.education.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,8 +10,9 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "usr")
+@Table(name = "users")
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

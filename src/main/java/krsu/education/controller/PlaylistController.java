@@ -1,10 +1,9 @@
-package krsu.argen.controller;
+package krsu.education.controller;
 
-import krsu.argen.model.*;
-import krsu.argen.repository.ListSongRepository;
-import krsu.argen.repository.PlaylistRepository;
-import krsu.argen.repository.SongRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import krsu.education.model.*;
+import krsu.education.repository.ListSongRepository;
+import krsu.education.repository.PlaylistRepository;
+import krsu.education.repository.SongRepository;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;

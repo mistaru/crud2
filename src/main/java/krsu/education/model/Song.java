@@ -1,4 +1,4 @@
-package krsu.argen.model;
+package krsu.education.model;
 
 import lombok.*;
 import javax.persistence.*;

@@ -1,8 +1,8 @@
-package krsu.argen.controller;
+package krsu.education.controller;
 
-import krsu.argen.model.Song;
-import krsu.argen.model.User;
-import krsu.argen.repository.SongRepository;
+import krsu.education.model.Song;
+import krsu.education.model.User;
+import krsu.education.repository.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Controller
 @RequestMapping("/song")

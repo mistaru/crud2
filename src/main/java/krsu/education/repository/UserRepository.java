@@ -1,6 +1,6 @@
-package krsu.argen.repository;
+package krsu.education.repository;
 
-import krsu.argen.model.User;
+import krsu.education.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

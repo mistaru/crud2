@@ -1,4 +1,4 @@
-package krsu.argen.config;
+package krsu.education.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
