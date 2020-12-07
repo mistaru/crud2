@@ -1,5 +1,6 @@
-package krsu.education.model;
+package krsu.education.entity;
 
+import krsu.education.enums.Role;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +23,7 @@ public class User implements UserDetails {
     private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @CollectionTable(name = "users_role", joinColumns = @JoinColumn(name = "users_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 

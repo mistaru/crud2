@@ -1,12 +1,12 @@
-package krsu.education.repository;
+package krsu.education.service;
 
 import krsu.education.entity.Song;
 import krsu.education.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Arrays;
 import java.util.List;
 
-public interface SongRepository extends JpaRepository<Song, Long> {
+public interface SongService {
 
     void deleteByNameAndSinger(String name, String singer);
 
@@ -22,4 +22,7 @@ public interface SongRepository extends JpaRepository<Song, Long> {
 
     List<Song> findByAuthor(User user);
 
+    List<Song> findAll();
+
+    void save(Song song);
 }

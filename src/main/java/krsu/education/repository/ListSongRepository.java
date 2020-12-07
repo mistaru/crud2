@@ -1,13 +1,12 @@
 package krsu.education.repository;
 
 import krsu.education.model.ListSong;
-import krsu.education.model.Playlist;
-import krsu.education.model.Song;
+import krsu.education.entity.Playlist;
+import krsu.education.entity.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+public interface ListSongRepository extends JpaRepository<ListSong, Long> {
 
-public interface ListSongRepository extends JpaRepository<ListSong,Long> {
-    List<ListSong> deleteByPlaylistAndSong(Playlist playlist,Song song);
+    void deleteByPlaylistAndSong(Playlist playlist, Song song);
 
 }

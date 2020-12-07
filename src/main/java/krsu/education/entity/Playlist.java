@@ -1,5 +1,6 @@
-package krsu.education.model;
+package krsu.education.entity;
 
+import krsu.education.model.ListSong;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,7 +20,7 @@ public class Playlist implements Comparable<Playlist> {
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "users_id")
     private User author;
 
     @OneToMany(mappedBy = "playlist")

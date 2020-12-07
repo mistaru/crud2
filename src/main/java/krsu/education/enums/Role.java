@@ -1,4 +1,4 @@
-package krsu.education.model;
+package krsu.education.enums;
 
 import org.springframework.security.core.GrantedAuthority;
 

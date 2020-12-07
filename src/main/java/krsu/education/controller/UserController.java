@@ -1,7 +1,7 @@
 package krsu.education.controller;
 
-import krsu.education.model.Role;
-import krsu.education.model.User;
+import krsu.education.enums.Role;
+import krsu.education.entity.User;
 import krsu.education.repository.UserRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -31,26 +31,11 @@ public class UserController {
         return "userList";
     }
 
-    @GetMapping("{user}")
-    public String userEditForm(@PathVariable User user, Model model) {
-
-        if (user.getRoles().contains(Role.ADMIN)) {
-
-        } else if (user.getRoles().contains(Role.USER)) {
-        }
-
-        model.addAttribute("user", user);
-        model.addAttribute("roles", Role.values());
-
-        return "userEdit";
-    }
-
     @PostMapping
-    public String userSave(
-            @RequestParam String username,
+    public String userSave(@RequestParam String username,
             @RequestParam Map<String, String> form,
-            @RequestParam("userId") User user
-    ) {
+            @RequestParam("userId") User user) {
+
         user.setUsername(username);
 
         Set<String> roles = Arrays.stream(Role.values())

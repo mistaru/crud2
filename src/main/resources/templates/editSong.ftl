@@ -5,8 +5,8 @@
         <form method="post">
             <div><select name="nameEdit" class="custom-select">
                     <option selected="selected">Selected song</option>
-                    <#list SongUser as SongUser>
-                        <option>${SongUser.name}</option>
+                    <#list SongEdit as SongUser>
+                        <option>${SongEdit.name}</option>
                     </#list>
                 </select>
             </div>

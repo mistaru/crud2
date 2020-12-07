@@ -1,6 +1,8 @@
-package krsu.education.model;
+package krsu.education.entity;
 
+import krsu.education.model.ListSong;
 import lombok.*;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -8,7 +10,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Song implements Comparable<Song>{
+public class Song implements Comparable<Song> {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "song_id", insertable = false, updatable = false)
@@ -27,7 +29,7 @@ public class Song implements Comparable<Song>{
     private String style;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "users_id")
     private User author;
 
     @OneToMany(mappedBy = "song")
@@ -40,6 +42,7 @@ public class Song implements Comparable<Song>{
         this.style = style;
         this.author = author;
     }
+
     @Override
     public int compareTo(Song o) {
         return name.compareTo(o.name);

@@ -1,5 +1,8 @@
 package krsu.education.controller;
 
+import krsu.education.entity.Playlist;
+import krsu.education.entity.Song;
+import krsu.education.entity.User;
 import krsu.education.model.*;
 import krsu.education.repository.ListSongRepository;
 import krsu.education.repository.PlaylistRepository;

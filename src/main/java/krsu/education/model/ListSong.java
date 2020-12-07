@@ -1,5 +1,7 @@
 package krsu.education.model;
 
+import krsu.education.entity.Playlist;
+import krsu.education.entity.Song;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
