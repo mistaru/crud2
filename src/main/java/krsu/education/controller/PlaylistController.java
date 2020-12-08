@@ -35,7 +35,7 @@ public class PlaylistController {
         this.listSongRepository = listSongRepository;
     }
 
-    @GetMapping("/playlist")
+    @GetMapping("/list")
     public ModelAndView playlist(@AuthenticationPrincipal User user) {
         Iterable<Song> songIterable;
         Iterable<Playlist> playlistList;
@@ -98,9 +98,8 @@ public class PlaylistController {
             @RequestParam String nameSong,
             Map<String, Object> model) {
 
-        List<Song> songList = songRepository.findByName(nameSong);
+        Song song = songRepository.findByName(nameSong);
         Playlist playlist = playlistRepository.findByName(namePlaylist);
-        Song song = songList.get(0);
 
         ListSong listSong = new ListSong();
 
@@ -153,8 +152,7 @@ public class PlaylistController {
             Map<String, Object> model) {
 
         Playlist playlist1 = playlistRepository.findByName(playlist);
-        List<Song> songList = songRepository.findByName(name);
-        Song song = songList.get(0);
+        Song song = songRepository.findByName(name);
         listSongRepository.deleteByPlaylistAndSong(playlist1, song);
         model.put("PSDelete", "Successfully delete!");
         return "playlist";

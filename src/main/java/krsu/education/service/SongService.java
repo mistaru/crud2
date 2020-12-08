@@ -2,17 +2,13 @@ package krsu.education.service;
 
 import krsu.education.entity.Song;
 import krsu.education.entity.User;
+import org.springframework.data.jpa.domain.Specification;
 
-import java.util.Arrays;
 import java.util.List;
 
 public interface SongService {
 
-    void deleteByNameAndSinger(String name, String singer);
-
     Song findByName(String name);
-
-    Song findBySingerAndName(String singer, String name);
 
     List<Song> findBySinger(String singer);
 
@@ -25,4 +21,13 @@ public interface SongService {
     List<Song> findAll();
 
     void save(Song song);
+
+    Song findById(Long id);
+
+    void deleteById(Long id);
+
+    Specification<Song> filterSearch(Song todo);
+
+    List<Song> findAll(Specification<Song> specification);
+
 }

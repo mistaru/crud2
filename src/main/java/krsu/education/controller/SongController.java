@@ -6,15 +6,15 @@ import krsu.education.service.SongService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -26,6 +26,7 @@ public class SongController {
     public SongController(@NotNull SongService service) {
         this.service = service;
     }
+
 
     @GetMapping("/list")
     public ModelAndView songs() {
@@ -42,105 +43,65 @@ public class SongController {
     public ModelAndView mySongs(@AuthenticationPrincipal User user) {
 
         return new ModelAndView("song")
-                .addObject("SongUser", service.findByAuthor(user)
+                .addObject("Song", service.findByAuthor(user)
                         .stream()
                         .sorted()
                         .collect(Collectors.toList()));
     }
 
 
-    @GetMapping("/edit")
-    public ModelAndView edit(@AuthenticationPrincipal User user) {
+    @GetMapping("/edit/{id}")
+    public String editSong(@PathVariable Long id, Model model) {
+    Song song = service.findById(id);
 
-        List<Song> songIterable;
+        model.addAttribute("song", service.findById(id));
+        return "song-form";
 
-        if (user.isAdmin()) {
-            songIterable = service.findAll();
-        } else {
-            songIterable = service.findByAuthor(user);
-        }
-
-        return new ModelAndView("editSong")
-                .addObject("SongEdit", songIterable.stream()
-                        .sorted()
-                        .collect(Collectors.toList()));
     }
 
-    @PostMapping("/song")
-    public String addSong(
-            @AuthenticationPrincipal User user,
-            @RequestParam String name,
-            @RequestParam(required = false) String singer,
-            @RequestParam(required = false) String album,
-            @RequestParam(required = false) String style,
-            Map<String, Object> model) {
 
-        Song song = new Song(name, singer, album, style, user);
+    @GetMapping("/add")
+    public String newSong(Model model) {
+
+        model.addAttribute("song", new Song());
+        return "song-form";
+
+    }
+
+
+    @PostMapping("/new")
+    public String newSong(
+            @AuthenticationPrincipal User user,
+            Song song) {
+
+        song.setAuthor(user);
         service.save(song);
-        model.put("SongAdd", "Song '" + song.getName() + "' successfully added!");
+        return "redirect:/song/my-list";
 
-        Iterable<Song> songIterable = service.findAll();
-        model.put("Song", songIterable);
-
-        return "song";
     }
 
-    @PostMapping("delete")
+
+    @PostMapping("/delete/{id}")
     @Transactional
-    public String delete(
-            @AuthenticationPrincipal User user,
-            @RequestParam String name,
-            @RequestParam(required = false) String singer,
-            Map<String, Object> model) {
+    public String delete(@PathVariable Long id) {
 
-        Song song = service.findBySingerAndName(singer, name);
-        if (name == null)
-            throw new IllegalArgumentException("Нету такой песни");
+        service.deleteById(id);
+        return "redirect:song/my-list";
 
-        if (user.getUsername().contains(song.getAuthorName()) || user.isAdmin()) {
-            service.deleteByNameAndSinger(name, singer);
-            model.put("SongAdd", "Song '" + song.getName() + "' successfully delete!");
+    }
 
-            List<Song> songList = service.findAll();
-            model.put("Song", songList);
-        } else
-            model.put("SongExc", "Нет прав на удаление");
 
-        model.put("Song", service.findAll());
+    @RequestMapping("/find/list2")
+    public String list2(Song song, Model model) {
 
+        List<Song> list = service.findAll(service.filterSearch(song));
+
+        model.addAttribute("list2", list);
         return "song";
     }
 
-    @PostMapping("filter")
-    public String filter(
-            @RequestParam(required = false) String criterion,
-            @RequestParam(required = false) String filter,
-            Map<String, Object> model) {
-        Iterable<Song> songIterable;
 
-        switch (criterion) {
-
-            case "name":
-                songIterable = (Iterable<Song>) service.findByName(filter);
-                break;
-            case "singer":
-                songIterable = service.findBySinger(filter);
-                break;
-            case "album":
-                songIterable = service.findByAlbum(filter);
-                break;
-            case "style":
-                songIterable = service.findByStyle(filter);
-                break;
-            default:
-                songIterable = service.findAll();
-                break;
-        }
-        model.put("Song", songIterable);
-        return "song";
-    }
-
-    @PostMapping("/editSong")
+/*    @PostMapping("/editSong")
     public String updateSong(
             @RequestParam String nameEdit,
             @RequestParam String name,
@@ -160,7 +121,7 @@ public class SongController {
         model.put("SongUser", songIterable);
 
         return "editSong";
-    }
+    }*/
 
 
 }

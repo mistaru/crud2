@@ -14,7 +14,7 @@ public class Song implements Comparable<Song> {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "song_id", insertable = false, updatable = false)
-    private int id;
+    private Long id;
 
     @Column
     private String name;

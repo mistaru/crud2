@@ -5,6 +5,18 @@
        aria-controls="collapseExampleS">
         Search song
     </a>
+
+
+    <a class="btn btn-warning" data-toggle="collapse" href="#collapseExampleD" role="button" aria-expanded="false"
+       aria-controls="collapseExampleD">
+        New song
+    </a>
+
+    <a class="btn btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+       aria-controls="collapseExample">
+        Delete song
+    </a>
+
     <div class="collapse" id="collapseExampleS">
         <div class="form-group mt-3">
             <form method="post" action="filter">
@@ -26,10 +38,6 @@
         </div>
     </div>
 
-    <a class="btn btn-warning" data-toggle="collapse" href="#collapseExampleD" role="button" aria-expanded="false"
-       aria-controls="collapseExampleD">
-        New song
-    </a>
     <div class="collapse" id="collapseExampleD">
         <div class="form-group mt-3">
             <form method="post" enctype="multipart/form-data">
@@ -55,10 +63,7 @@
     </div>
 
 
-    <a class="btn btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-       aria-controls="collapseExample">
-        Delete song
-    </a>
+
     <div class="collapse" id="collapseExample">
         <div class="form-group mt-3">
             <form method="post" enctype="multipart/form-data" action="delete">
@@ -76,39 +81,36 @@
         </div>
     </div>
 
-    <a class="btn btn-dark" href="/editSong">Edit Song</a>
+
+    <table id="tblData" class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Испольнитель</th>
+            <th scope="col">Альбом</th>
+            <th scope="col">Жанр</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
 
 
-    <#if SongExc??>
-        <div>
-            <br>
-            <h2>${SongExc}</h2>
-        </div>
-    </#if>
-
-    <#if SongAdd??>
-        <div>
-            <br>
-            <h2>${SongAdd}</h2>
-        </div>
-    </#if>
-
-   <div class="card">
-        <#list Song as Song>
-            <div class="card my-3">
-
-                <div class="m-2">
-                    <h6>${Song.name}</h6>
-                    <span>${Song.singer}|</span>
-                    <span>${Song.album}|</span>
-                    <span>${Song.style}</span>
-                    <div class="card-footer text-muted">
-                        ${Song.authorName}
-                    </div>
-                </div>
-            </div>
-        <#else>
-            No message
-        </#list>
-    </div>
+        <#if Song??>
+            <#list Song as Song>
+                <tr>
+                    <td>${Song.name}</td>
+                    <td>${Song.singer}</td>
+                    <td>${Song.album}</td>
+                    <td>${Song.style}</td>
+                    <td>
+                        <a href="/song/edit/${Song.id}" class="card-link">Редактировать</a>
+                        <a href="/edit/delete/${Song.id}" class="card-link">Удалить</a>
+                    </td>
+                </tr>
+            <#else>
+                Список пуст!
+            </#list>
+        </#if>
+    </table>
 </@c.page>
