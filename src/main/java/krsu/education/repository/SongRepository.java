@@ -11,21 +11,9 @@ import java.util.List;
 @Repository
 public interface SongRepository extends JpaRepository<Song, Long>, JpaSpecificationExecutor<Song> {
 
-    void deleteByNameAndSinger(String name, String singer);
-
     Song findByName(String name);
 
-    Song findById(long id);
-
     void deleteById(Long id);
-
-    Song findBySingerAndName(String singer, String name);
-
-    List<Song> findBySinger(String singer);
-
-    List<Song> findByAlbum(String album);
-
-    List<Song> findByStyle(String style);
 
     List<Song> findByAuthor(User user);
 

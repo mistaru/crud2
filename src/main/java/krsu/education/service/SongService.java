@@ -8,14 +8,6 @@ import java.util.List;
 
 public interface SongService {
 
-    Song findByName(String name);
-
-    List<Song> findBySinger(String singer);
-
-    List<Song> findByAlbum(String album);
-
-    List<Song> findByStyle(String style);
-
     List<Song> findByAuthor(User user);
 
     List<Song> findAll();

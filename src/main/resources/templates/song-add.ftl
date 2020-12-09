@@ -2,9 +2,8 @@
 <@c.page>
 
     <form action="/song/new" method="post">
-        <input type="hidden" value="${song.id}" name="id">
 
-        <h1 align="center" style="color:Black">Редактировать: ${song.name}</h1>
+        <h1 align="center" style="color:Black">Добавить</h1>
 
         <div class="container">
             <div class="row justify-content-center">
@@ -15,8 +14,8 @@
                                 <label for="title" class="cols-sm-2 control-label">Название</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
-                                        <input type="text" name="name" class="form-control" placeholder="название"
-                                               value="${song.name}"/>
+                                        <input type="text" name="name" class="form-control"
+                                               placeholder="название"/>
                                     </div>
                                 </div>
                             </div>
@@ -26,7 +25,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <input type="text" name="singer" class="form-control"
-                                               placeholder="исполнитель" value="${song.singer}"/>
+                                               placeholder="исполнитель"/>
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +35,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <input type="text" name="album" class="form-control"
-                                               placeholder="альбом" value="${song.album}"/>
+                                               placeholder="альбом"/>
                                     </div>
                                 </div>
                             </div>
@@ -46,14 +45,14 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <input type="text" name="style" class="form-control"
-                                               placeholder="жанр" value="${song.style}"/>
+                                               placeholder="жанр"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div align="center">
                                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-primary">Сохранить</button>
                             </div>
                         </div>
                     </div>

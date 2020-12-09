@@ -25,26 +25,6 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public Song findByName(String name) {
-        return repo.findByName(name);
-    }
-
-    @Override
-    public List<Song> findBySinger(String singer) {
-        return repo.findBySinger(singer);
-    }
-
-    @Override
-    public List<Song> findByAlbum(String album) {
-        return repo.findByAlbum(album);
-    }
-
-    @Override
-    public List<Song> findByStyle(String style) {
-        return repo.findByStyle(style);
-    }
-
-    @Override
     public List<Song> findByAuthor(User user) {
         return repo.findByAuthor(user);
     }
@@ -61,8 +41,7 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public Song findById(Long id) {
-        long longId = id;
-        return repo.findById(longId);
+        return repo.findById(id).get();
     }
 
     @Override

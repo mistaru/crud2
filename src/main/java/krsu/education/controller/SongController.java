@@ -31,7 +31,7 @@ public class SongController {
     @GetMapping("/list")
     public ModelAndView songs() {
 
-        return new ModelAndView("song")
+        return new ModelAndView("song-list")
                 .addObject("Song", service.findAll()
                         .stream()
                         .sorted()
@@ -42,7 +42,7 @@ public class SongController {
     @GetMapping("/my-list")
     public ModelAndView mySongs(@AuthenticationPrincipal User user) {
 
-        return new ModelAndView("song")
+        return new ModelAndView("song-my-list")
                 .addObject("Song", service.findByAuthor(user)
                         .stream()
                         .sorted()
@@ -52,7 +52,6 @@ public class SongController {
 
     @GetMapping("/edit/{id}")
     public String editSong(@PathVariable Long id, Model model) {
-    Song song = service.findById(id);
 
         model.addAttribute("song", service.findById(id));
         return "song-form";
@@ -64,7 +63,7 @@ public class SongController {
     public String newSong(Model model) {
 
         model.addAttribute("song", new Song());
-        return "song-form";
+        return "song-add";
 
     }
 
@@ -81,12 +80,12 @@ public class SongController {
     }
 
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     @Transactional
     public String delete(@PathVariable Long id) {
 
         service.deleteById(id);
-        return "redirect:song/my-list";
+        return "redirect:/song/my-list";
 
     }
 
@@ -96,8 +95,8 @@ public class SongController {
 
         List<Song> list = service.findAll(service.filterSearch(song));
 
-        model.addAttribute("list2", list);
-        return "song";
+        model.addAttribute("Song", list);
+        return "song-list";
     }
 
 
