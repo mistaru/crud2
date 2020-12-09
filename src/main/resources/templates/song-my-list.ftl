@@ -1,30 +1,8 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
-
-    <form method="post" action="/song/find/list2">
-        <div class="row">
-            <div class="col-auto">
-                <input type="text" name="name" class="form-control" placeholder="Название"/>
-            </div>
-            <div class="col-auto">
-                <input type="text" name="singer" class="form-control" placeholder="Испольнитель"/>
-            </div>
-            <div class="col-auto">
-                <input type="text" name="album" class="form-control" placeholder="Альбом"/>
-            </div>
-            <div class="col-auto">
-                <input type="text" name="style" class="form-control" placeholder="Жанр"/>
-            </div>
-
-            <div class="col-auto">
-                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                <button class="btn btn-primary" type="submit">Search</button>
-            </div>
-        </div>
-    </form>
-
-
-
+    <a href="/song/add">ДОБАВИТЬ</a>
+      <br>
+      <br>
     <table id="tblData" class="table">
         <thead class="thead-dark">
         <tr>

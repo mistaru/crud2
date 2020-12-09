@@ -90,37 +90,13 @@ public class SongController {
     }
 
 
-    @RequestMapping("/find/list2")
-    public String list2(Song song, Model model) {
+    @RequestMapping("/find/list1")
+    public String list1(Song song, Model model) {
 
         List<Song> list = service.findAll(service.filterSearch(song));
 
         model.addAttribute("Song", list);
         return "song-list";
     }
-
-
-/*    @PostMapping("/editSong")
-    public String updateSong(
-            @RequestParam String nameEdit,
-            @RequestParam String name,
-            @RequestParam(required = false) String singer,
-            @RequestParam(required = false) String album,
-            @RequestParam(required = false) String style,
-            Map<String, Object> model) {
-
-        Song song = service.findByName(nameEdit);
-        song.setName(name);
-        song.setSinger(singer);
-        song.setAlbum(album);
-        song.setStyle(style);
-        service.save(song);
-
-        Iterable<Song> songIterable = service.findAll();
-        model.put("SongUser", songIterable);
-
-        return "editSong";
-    }*/
-
 
 }

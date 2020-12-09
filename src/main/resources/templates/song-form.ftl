@@ -4,7 +4,7 @@
     <form action="/song/new" method="post">
         <input type="hidden" value="${song.id}" name="id">
 
-        <h1 align="center" style="color:Black">Редактировать: ${song.name}</h1>
+        <h3 align="center" style="color:Black">Редактировать: ${song.name}</h3>
 
         <div class="container">
             <div class="row justify-content-center">
