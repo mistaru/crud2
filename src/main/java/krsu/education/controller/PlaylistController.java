@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -33,6 +32,7 @@ public class PlaylistController {
         this.service = service;
         this.listSongService = listSongService;
     }
+
 
     @GetMapping("/list")
     public ModelAndView playlist(@AuthenticationPrincipal User user) {
@@ -80,7 +80,8 @@ public class PlaylistController {
 
         model.addAttribute("playlist", service.findById(id));
         model.addAttribute("Songs", songService.findAll());
-        model.addAttribute("Song", service.findById(id).getListSongs().stream()
+        model.addAttribute("Song", service.findById(id)
+                .getListSongs().stream()
                 .map(ListSong::getSong)
                 .collect(Collectors.toList()));
 
@@ -94,22 +95,19 @@ public class PlaylistController {
 
         listSongService
                 .save(new ListSong(service.findById(id)
-                ,songService.findByName(nameSong)));
+                        , songService.findByName(nameSong)));
 
         return "redirect:/playlist/details/" + id;
     }
 
 
-    @PostMapping("deletePlaylist")
+    @GetMapping("/delete/{id}")
     @Transactional
-    public String deletePlaylist(
-            @RequestParam Long id,
-            Map<String, Object> model) {
+    public String deletePlaylist(@PathVariable Long id) {
 
         service.deleteById(id);
-        model.put("PlDelete", "Successfully delete!");
 
-        return "playlist-list";
+        return "redirect:/playlist/list";
     }
 
 }
