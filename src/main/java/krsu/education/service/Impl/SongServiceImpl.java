@@ -85,4 +85,9 @@ public class SongServiceImpl implements SongService {
         return repo.findAll(specification);
     }
 
+    @Override
+    public Song findByName(String name) {
+        return repo.findByName(name);
+    }
+
 }

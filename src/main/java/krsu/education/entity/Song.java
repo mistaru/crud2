@@ -1,7 +1,8 @@
 package krsu.education.entity;
 
-import krsu.education.model.ListSong;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -34,6 +35,8 @@ public class Song implements Comparable<Song> {
 
     @OneToMany(mappedBy = "song")
     private Set<ListSong> listSongs;
+
+
 
     public Song(String name, String singer, String album, String style, User author) {
         this.name = name;

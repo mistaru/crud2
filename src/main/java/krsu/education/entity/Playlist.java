@@ -1,11 +1,15 @@
 package krsu.education.entity;
 
-import krsu.education.model.ListSong;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.Cache;
+import javax.persistence.Entity;
+import java.util.List;
 import java.util.Set;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -13,7 +17,7 @@ public class Playlist implements Comparable<Playlist> {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "playlist_id")
-    private int id;
+    private Long id;
 
     private String name;
 

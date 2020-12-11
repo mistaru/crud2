@@ -1,7 +1,6 @@
-package krsu.education.model;
+package krsu.education.entity;
 
-import krsu.education.entity.Playlist;
-import krsu.education.entity.Song;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,29 +9,26 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@Setter
+@Getter
 public class ListSong {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "list_song_id")
-    @Setter
-    @Getter
-    private int id;
+    private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "playlist_id",nullable=false)
-    @Setter
-    @Getter
     private Playlist playlist;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "song_id",nullable=false)
-    @Setter
-    @Getter
     private Song song;
 
     public ListSong(Playlist playlist, Song song) {
         this.playlist = playlist;
         this.song = song;
     }
+
 }

@@ -22,4 +22,6 @@ public interface SongService {
 
     List<Song> findAll(Specification<Song> specification);
 
+    Song findByName(String name);
+
 }

@@ -3,7 +3,7 @@
 
     <form action="/song/new" method="post">
 
-        <h3 align="center" style="color:Black">Добавить</h3>
+        <h3 align="center" style="color:Black">Новая музыка</h3>
 
         <div class="container">
             <div class="row justify-content-center">
