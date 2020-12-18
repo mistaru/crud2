@@ -8,4 +8,6 @@ public interface ListSongService {
 
     void save(ListSong listSong);
 
+    void deleteById(Long id);
+
 }

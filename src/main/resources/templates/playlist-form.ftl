@@ -25,7 +25,7 @@
                                 <label for="description" class="cols-sm-2 control-label">Описание</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
-                                        <input type="text" name="singer" class="form-control"
+                                        <input type="text" name="description" class="form-control"
                                                placeholder="исполнитель" value="${playlist.description}"/>
                                     </div>
                                 </div>

@@ -2,16 +2,13 @@ package krsu.education.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.*;
 
 import javax.persistence.*;
-import javax.persistence.Cache;
-import javax.persistence.Entity;
-import java.util.List;
 import java.util.Set;
 
 @Data
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "users_id"})})
 @NoArgsConstructor
 public class Playlist implements Comparable<Playlist> {
     @Id

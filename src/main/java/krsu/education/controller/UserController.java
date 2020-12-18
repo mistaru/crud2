@@ -28,7 +28,7 @@ public class UserController {
     @GetMapping("/list")
     public String userList(Model model) {
         model.addAttribute("users", userRepo.findAll());
-        return "userList";
+        return "user-list";
     }
 
     @PostMapping

@@ -9,7 +9,6 @@ import krsu.education.service.PlaylistService;
 import krsu.education.service.SongService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -102,12 +101,20 @@ public class PlaylistController {
 
 
     @GetMapping("/delete/{id}")
-    @Transactional
     public String deletePlaylist(@PathVariable Long id) {
 
         service.deleteById(id);
 
         return "redirect:/playlist/list";
     }
+
+
+/*    @GetMapping("/delete/song/{id}")
+    public String deleteSongInPlaylist(@PathVariable Long id) {
+
+        listSongService.deleteById(id);
+
+        return "redirect:/playlist/details/" + id;
+    }*/
 
 }

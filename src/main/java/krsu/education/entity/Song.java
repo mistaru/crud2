@@ -9,6 +9,7 @@ import java.util.Set;
 
 @Data
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "singer", "album"})})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Song implements Comparable<Song> {
@@ -20,10 +21,10 @@ public class Song implements Comparable<Song> {
     @Column
     private String name;
 
-    @Column
+    @Column(unique = true)
     private String singer;
 
-    @Column
+    @Column(unique = true)
     private String album;
 
     @Column
@@ -35,7 +36,6 @@ public class Song implements Comparable<Song> {
 
     @OneToMany(mappedBy = "song")
     private Set<ListSong> listSongs;
-
 
 
     public Song(String name, String singer, String album, String style, User author) {

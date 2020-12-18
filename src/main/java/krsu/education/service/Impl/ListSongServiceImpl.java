@@ -20,4 +20,9 @@ public class ListSongServiceImpl implements ListSongService {
     public void save(ListSong listSong) {
         repo.save(listSong);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        repo.deleteById(id);
+    }
 }
