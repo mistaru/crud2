@@ -3,6 +3,7 @@ package krsu.education.controller;
 import krsu.education.entity.Song;
 import krsu.education.entity.User;
 import krsu.education.service.SongService;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,14 +70,15 @@ public class SongController {
 
 
     @PostMapping("/new")
-    public String newSong(
-            @AuthenticationPrincipal User user,
-            Song song) {
-
-        song.setAuthor(user);
-        service.save(song);
-        return "redirect:/song/my-list";
-
+    public String newSong(@AuthenticationPrincipal User user, Song song) {
+        try {
+            song.setAuthor(user);
+            service.save(song);
+            return "redirect:/song/my-list";
+        } catch (DataIntegrityViolationException e) {
+            e.printStackTrace();
+            return "redirect:/song/add";
+        }
     }
 
 

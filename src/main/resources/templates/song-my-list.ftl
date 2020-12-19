@@ -59,4 +59,11 @@
             </div>
         </div>
     </div>
+
+
+    <#if exists??>
+        ${exists}
+         <#else>
+                Список пусt!
+    </#if>
 </@c.page>

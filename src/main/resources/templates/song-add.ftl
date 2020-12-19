@@ -5,6 +5,11 @@
 
         <h3 align="center" style="color:Black">Новая музыка</h3>
 
+        <#if Duplicate??>
+            <h5> ${Duplicate}</h5>
+        </#if>
+
+
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4">
@@ -60,5 +65,4 @@
             </div>
         </div>
     </form>
-
 </@c.page>

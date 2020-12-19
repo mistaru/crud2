@@ -2,7 +2,6 @@ package krsu.education.controller;
 
 import krsu.education.entity.ListSong;
 import krsu.education.entity.Playlist;
-import krsu.education.entity.Song;
 import krsu.education.entity.User;
 import krsu.education.service.ListSongService;
 import krsu.education.service.PlaylistService;
@@ -23,7 +22,6 @@ public class PlaylistController {
     private final SongService songService;
     private final PlaylistService service;
     private final ListSongService listSongService;
-    protected List<Song> songList;
     protected List<Playlist> playlistList;
 
     public PlaylistController(SongService songService, PlaylistService service, ListSongService listSongService) {
@@ -36,13 +34,17 @@ public class PlaylistController {
     @GetMapping("/list")
     public ModelAndView playlist(@AuthenticationPrincipal User user) {
 
+        if (user.isAdmin()) playlistList = service.findAll().stream()
+                .sorted()
+                .collect(Collectors.toList());
+        else playlistList = service
+                .findByAuthor(user)
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
+
         return new ModelAndView("playlist-list")
-                .addObject("playlistList",
-                        playlistList = service
-                                .findByAuthor(user)
-                                .stream()
-                                .sorted()
-                                .collect(Collectors.toList()));
+                .addObject("playlistList", playlistList);
     }
 
 
@@ -107,14 +109,5 @@ public class PlaylistController {
 
         return "redirect:/playlist/list";
     }
-
-
-/*    @GetMapping("/delete/song/{id}")
-    public String deleteSongInPlaylist(@PathVariable Long id) {
-
-        listSongService.deleteById(id);
-
-        return "redirect:/playlist/details/" + id;
-    }*/
 
 }

@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "singer", "album"})})
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"singer", "album"})})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Song implements Comparable<Song> {

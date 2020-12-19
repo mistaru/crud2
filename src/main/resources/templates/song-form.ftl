@@ -62,4 +62,7 @@
         </div>
     </form>
 
+    <#if exists??>
+        ${exists}
+    </#if>
 </@c.page>

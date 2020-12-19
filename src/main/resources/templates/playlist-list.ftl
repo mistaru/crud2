@@ -1,4 +1,6 @@
+<#include "parts/security.ftl">
 <#import "parts/common.ftl" as c>
+
 
 <@c.page>
     <div class="container text-center text-black">
@@ -18,7 +20,11 @@
             <#list playlistList as playlistList>
                 <div class="card my-1">
                     <div class="m-2">
-                        <h4 class="card-title">${playlistList.name}</h4>
+                        <h4 class="card-title">${playlistList.name}
+                            <#if isAdmin>
+                                /${playlistList.authorName}
+                            </#if>
+                        </h4>
                         <div class="card-footer text-muted">
                             <a href="/playlist/details/${playlistList.id}" class="card-link">
                                 <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-music-note-list"
@@ -48,7 +54,7 @@
                     </div>
                 </div>
             <#else>
-                No message
+                Список пуст
             </#list>
         </#if>
     </div>
