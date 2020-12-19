@@ -1,3 +1,5 @@
+create sequence hibernate_sequence start 1 increment 1;
+
 create table
 list_song
 (list_song_id int8 not null,

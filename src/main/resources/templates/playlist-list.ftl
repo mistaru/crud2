@@ -3,6 +3,7 @@
 
 
 <@c.page>
+     <#if !isAdmin>
     <div class="container text-center text-black">
         <a href="/playlist/new">
             <svg width="4em" height="3em" viewBox="0 0 16 16" class="bi bi-music-player-fill" fill="currentColor"
@@ -13,7 +14,7 @@
             </svg>
         </a>
     </div>
-
+     </#if>
 
     <div class="card-columns">
         <#if playlistList??>
@@ -25,6 +26,8 @@
                                 /${playlistList.authorName}
                             </#if>
                         </h4>
+
+                        <#if !isAdmin>
                         <div class="card-footer text-muted">
                             <a href="/playlist/details/${playlistList.id}" class="card-link">
                                 <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-music-note-list"
@@ -51,6 +54,7 @@
                                 </svg>
                             </a>
                         </div>
+                        </#if>
                     </div>
                 </div>
             <#else>

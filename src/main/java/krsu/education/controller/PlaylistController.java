@@ -60,10 +60,14 @@ public class PlaylistController {
     @PostMapping("/add")
     public String addPlaylist(@AuthenticationPrincipal User user, Playlist playlist) {
 
-        playlist.setAuthor(user);
-        service.save(playlist);
-
-        return "redirect:/playlist/list";
+        try {
+            playlist.setAuthor(user);
+            service.save(playlist);
+            return "redirect:/playlist/list";
+        } catch (Exception e) {
+            System.out.println("Нарушение уникальности! Название каталога не должны повторяться!");
+            return "redirect:/playlist/new";
+        }
     }
 
 

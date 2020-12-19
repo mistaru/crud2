@@ -76,7 +76,7 @@ public class SongController {
             service.save(song);
             return "redirect:/song/my-list";
         } catch (DataIntegrityViolationException e) {
-            e.printStackTrace();
+            System.out.println("Нарушение уникальности! Название исполнителя и жанр не должны повторяться");
             return "redirect:/song/add";
         }
     }
