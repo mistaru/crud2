@@ -65,7 +65,7 @@ public class PlaylistController {
             service.save(playlist);
             return "redirect:/playlist/list";
         } catch (Exception e) {
-            System.out.println("Нарушение уникальности! Название каталога не должны повторяться!");
+            System.out.println("Violation of uniqueness! The name of the catalog must not be repeated!");
             return "redirect:/playlist/new";
         }
     }

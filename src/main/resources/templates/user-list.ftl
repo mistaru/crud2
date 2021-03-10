@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<h3>Список пользователей</h3>
+<h3>List of users</h3>
 <style>
     table, td, th {
         border: 1px solid #999;
@@ -12,8 +12,8 @@
 <table>
     <thead>
     <tr>
-        <th>Имя</th>
-        <th>Роль</th>
+        <th>Name</th>
+        <th>Roles</th>
     </tr>
     </thead>
     <tbody>

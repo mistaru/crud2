@@ -13,7 +13,8 @@ import javax.persistence.*;
 public class ListSong {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "list_song_sequence")
+    @SequenceGenerator(name = "list_song_sequence", sequenceName = "list_song_seq", allocationSize = 1)
     @Column(name = "list_song_id")
     private Long id;
 

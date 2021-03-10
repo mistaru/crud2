@@ -11,8 +11,10 @@ import java.util.Set;
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "users_id"})})
 @NoArgsConstructor
 public class Playlist implements Comparable<Playlist> {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "playlist_sequence")
+    @SequenceGenerator(name = "playlist_sequence", sequenceName = "playlist_seq", allocationSize = 1)
     @Column(name = "playlist_id")
     private Long id;
 

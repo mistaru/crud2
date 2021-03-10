@@ -3,7 +3,7 @@
 
     <form action="/song/new" method="post">
 
-        <h3 align="center" style="color:Black">Новая музыка</h3>
+        <h3 align="center" style="color:Black">New music</h3>
 
         <#if Duplicate??>
             <h5> ${Duplicate}</h5>
@@ -16,48 +16,48 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="title" class="cols-sm-2 control-label">Название</label>
+                                <label for="title" class="cols-sm-2 control-label">Name</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <input type="text" name="name" class="form-control"
-                                               placeholder="название"/>
+                                               placeholder="name"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="description" class="cols-sm-2 control-label">Исполнитель</label>
+                                <label for="description" class="cols-sm-2 control-label">Singer</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <input type="text" name="singer" class="form-control"
-                                               placeholder="исполнитель"/>
+                                               placeholder="singer"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="description" class="cols-sm-2 control-label">Альбом</label>
+                                <label for="description" class="cols-sm-2 control-label">Album</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <input type="text" name="album" class="form-control"
-                                               placeholder="альбом"/>
+                                               placeholder="album"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="description" class="cols-sm-2 control-label">Жанр</label>
+                                <label for="description" class="cols-sm-2 control-label">Style</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <input type="text" name="style" class="form-control"
-                                               placeholder="жанр"/>
+                                               placeholder="style"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div align="center">
                                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                                <button type="submit" class="btn btn-primary">Сохранить</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </div>
                     </div>

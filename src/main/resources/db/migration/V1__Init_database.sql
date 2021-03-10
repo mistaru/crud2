@@ -1,4 +1,7 @@
-create sequence hibernate_sequence start 1 increment 1;
+create sequence list_song_seq start 1 increment 1;
+create sequence playlist_seq start 1 increment 1;
+create sequence song_seq start 1 increment 1;
+create sequence users_seq start 1 increment 1;
 
 create table
 list_song

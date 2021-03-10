@@ -14,7 +14,8 @@ import java.util.Set;
 @AllArgsConstructor
 public class Song implements Comparable<Song> {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "song_sequence")
+    @SequenceGenerator(name = "song_sequence", sequenceName = "song_seq", allocationSize = 1)
     @Column(name = "song_id", insertable = false, updatable = false)
     private Long id;
 

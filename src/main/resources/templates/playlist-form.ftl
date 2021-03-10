@@ -4,7 +4,7 @@
     <form action="/playlist/add" method="post">
         <input type="hidden" value="${playlist.id}" name="id">
 
-        <h3 align="center" style="color:Black">Редактировать: ${playlist.name}</h3>
+        <h3 align="center" style="color:Black">Edit: ${playlist.name}</h3>
 
         <div class="container">
             <div class="row justify-content-center">
@@ -12,21 +12,21 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="title" class="cols-sm-2 control-label">Название</label>
+                                <label for="title" class="cols-sm-2 control-label">Name</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
-                                        <input type="text" name="name" class="form-control" placeholder="название"
+                                        <input type="text" name="name" class="form-control" placeholder="name"
                                                value="${playlist.name}"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="description" class="cols-sm-2 control-label">Описание</label>
+                                <label for="description" class="cols-sm-2 control-label">Description</label>
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <input type="text" name="description" class="form-control"
-                                               placeholder="исполнитель" value="${playlist.description}"/>
+                                               placeholder="description" value="${playlist.description}"/>
                                     </div>
                                 </div>
                             </div>

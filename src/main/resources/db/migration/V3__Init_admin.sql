@@ -1,5 +1,5 @@
-insert into users (id, active, password, username) values (255, 'true', 'admin', 'admin');
-insert into users (id, active, password, username) values (256, 'true', 12, 'olga');
+insert into users (id, active, password, username) values (200, 'true', 'admin', 'admin');
+insert into users (id, active, password, username) values (201, 'true', 'aidana', 'aidana');
 
-insert into users_role (users_id,roles) values (255, 'ADMIN');
-insert into users_role (users_id,roles) values (256, 'USER');
+insert into users_role (users_id,roles) values (200, 'ADMIN');
+insert into users_role (users_id,roles) values (201, 'USER');
